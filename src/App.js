@@ -147,7 +147,7 @@ function App() {
       <div className="mt-4">
         <div className='container'>
           <h1 className='myfont_title text-center'>React 감정일기장 프로젝트</h1>
-          <div className='text-end'>운영팀 연락처 : 010-xxxx-xxxx</div>
+          <div className='text-end'>운영팀 연락처 : 010-xxxx-3029</div>
           <div className='mx-auto'>        
   
           {/* 컴포넌트 연결(마운트) 하기 */}
