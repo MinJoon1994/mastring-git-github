@@ -1,0 +1,23 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=East+Sea+Dokdo&family=Gowun+Batang:wght@400;700&family=Jua&family=Nanum+Pen+Script&family=Song+Myung&display=swap');
+
+*{
+    font-family: "Jua", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
