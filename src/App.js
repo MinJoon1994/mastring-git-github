@@ -147,7 +147,8 @@ function App() {
       }}>
       <div className="mt-4">
         <div className='container'>
-          <h1 className='myfont_title text-center'>React 감정일기장 프로젝트</h1>
+          <h1 className='myfont_title text-center'>감정 일기장: 운영팁 웹 어드민 시스템 C1</h1>
+          <h5>Welcome to 운영팀 웹 어드민 시스템</h5>
           <div className='mx-auto'>        
   
           {/* 컴포넌트 연결(마운트) 하기 */}
