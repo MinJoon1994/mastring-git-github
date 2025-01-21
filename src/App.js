@@ -226,6 +226,13 @@ ex) https://myproject.com/blog 요청 -> blog.html 반환
   1. 일기 데이터 State는 최상위 컴포넌트인 App생성
   2. useReduce로 
 
+  git clone 프로젝트 : 복사시 라이브러리 없는 상태
+
+  복사한 프로젝트
+  - 1. npm install -g npm@latest
+  - 2. rm -rf node_modules(rmdir node_modules)
+  - 3. npm install
+
 
 
 */
