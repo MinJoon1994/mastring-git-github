@@ -147,9 +147,11 @@ function App() {
       }}>
       <div className="mt-4">
         <div className='container'>
+<<<<<<< feature/change-main-content
           <h1 className='myfont_title text-center'>감정 일기장 V1</h1>
           <h5>Welcome to 운영팀 웹 어드민 시스템</h5>
           <p>접근 권한이 필요하신분은 운영팀에 문의해주세요.</p>
+
           <div className='mx-auto'>        
   
           {/* 컴포넌트 연결(마운트) 하기 */}
