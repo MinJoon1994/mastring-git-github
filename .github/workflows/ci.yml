@@ -1,27 +1,33 @@
-name: Node.js CI 
+name: Node.js CI
 
-on: => 워크플로 실행 시킬 이벤트 명시
+on:
+  # 워크플로 실행 시킬 이벤트 명시
   push:
-    branches: [ "main" ] 
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] 
+    branches: [ "main" ]
 
-jobs: 
-  build: 
+jobs:
+  build:
+    # Ubuntu 최신 버전에서 실행
+    runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest 
-
-    strategy: 
+    strategy:
+      # 여러 Node.js 버전에서 테스트
       matrix:
         node-version: [18.x, 20.x, 22.x]
 
- 
     steps:
+      # 소스 코드 체크아웃
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      
+      # Node.js 버전 설정
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: echo Hello
-        run: echo "Hello"!
+
+      # 간단한 출력 테스트
+      - name: Print greeting
+        run: echo "Hello!"
