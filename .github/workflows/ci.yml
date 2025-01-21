@@ -1,0 +1,33 @@
+name: Node.js CI 
+
+on: => 워크플로 실행 시킬 이벤트 명시
+  push:
+    branches: [ "main" ] 
+  pull_request:
+    branches: [ "main" ] 
+
+jobs: 
+  build: 
+
+    runs-on: ubuntu-latest 
+
+    strategy: 
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+ 
+    steps:
+    # user: 해당 레포지토리를 pull받고 이동하는 action 대부분의 workflow에 사용
+    #     : 원격 저장소에서 소스코드를 실행환경으로 가져온다는 의미
+    #     : Github market place 제공 => clone & checkout하는 액션
+    - uses: actions/checkout@v4
+    # name: 현재 단계의 이름을 명시(원격 저장소의 Actions탭 페이지의 로그에서 해당 단계다 이름을 확인)
+    - name: Use Node.js ${{ matrix.node-version }}
+    # nodejs 설치하는 action
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    # run: 해당 잡이 실행되는 환경에서 셀 명령어를 실행    
+    - name: echo Hello
+      run: echo "Hello"!

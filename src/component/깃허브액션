@@ -1,0 +1,52 @@
+- 깃 허브에서 제공하는 서비스 : 깃허브액션
+- 소프트웨어 개발에 필요한 작업 추가를 자동화하는 도구
+- 액션은 이벤트 기반으로 특정 이벤트가 발생했을 때 -> 특정 명령 or 명령 집합을 자동으로 실행
+- 이벤트 -> 풀 리퀘스트, 푸시와 같은 변경을 의미
+
+1. 이벤트(Event)    : 정의 된 깃허브 액션 작업을 실행시키는 특정활동
+2. 잡(jobs)         : 단일 환경에서 실행되는 명령의 집합
+3. 스텝(Steps)      : 잡 안에서 실행허가 될 명령들을 정의
+4. 액션(Action)     : 단일 명령 그 자체를 의미
+
+------------------------------------------------------------------------------------------------------
+
+name: Node.js CI => 워크플로 이름 작성
+
+on: => 워크플로 실행 시킬 이벤트 명시
+  push:
+    branches: [ "main" ] => 특정 이벤트 발생시 => main브랜치에 푸시 이벤트가 발생했을 경우
+  pull_request:
+    branches: [ "main" ] => main 브랜치에 풀 리퀘스트가 생성되었을 때 해당 워크 플로는 동작
+
+jobs: => 실행할 작업을 정의(하나의 작업 내의 명령들은 같은 환경에서 실행)
+  build: => 특정 작업 이름을 의미
+
+    runs-on: ubuntu-latest => 잡이 실행되는 환경(우분투 운영체제에서 잡을 실행한다는 의미)
+
+    => 동일한 작업을 다양하게 실행시키고 싶을 경우 사용, 여러 운영체계에서 테스트를 돌린다던지,
+    => 여러버젼을 사용하여 테스트 한다던지 등
+    strategy: 
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        node-ver:[18,20,22]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    
+    steps:
+    # user: 해당 레포지토리를 pull받고 이동하는 action 대부분의 workflow에 사용
+    #     : 원격 저장소에서 소스코드를 실행환경으로 가져온다는 의미
+    #     : Github market place 제공 => clone & checkout하는 액션
+    - uses: actions/checkout@v4
+    # name: 현재 단계의 이름을 명시(원격 저장소의 Actions탭 페이지의 로그에서 해당 단계다 이름을 확인)
+    - name: Use Node.js ${{ matrix.node-version }}
+    # nodejs 설치하는 action
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    # run: 해당 잡이 실행되는 환경에서 셀 명령어를 실행    
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+
+------------------------------------------------------------------------------------------------------
